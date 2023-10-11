@@ -1,0 +1,31 @@
+```
+##
+##Install Packages
+##
+library(tidyverse)
+install.packages("janitor")
+library(janitor)
+library(lubridate)
+library(rmarkdown)
+library(readr)
+rm(list=ls())
+```
+```{r}
+##
+## Import previous quarter data
+##
+df1 <- read.csv("202304-divvy-tripdata.csv")
+df2 <- read.csv("202305-divvy-tripdata.csv")
+df3 <- read.csv("202306-divvy-tripdata.csv")
+```
+```{r}
+##
+## Combine data frames into one data.frame
+##
+bike_rides <- rbind(df1,df2,df3)
+```
+```{r}
+##
+## Used to turn data into a csv to share to Tablau
+##
+write.csv(bike_rides, "bikerides.csv", row.names=FALSE)
